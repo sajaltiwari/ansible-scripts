@@ -1,0 +1,8 @@
+---
+- name: Install talk
+  hosts: ansibleclient
+
+  tasks:
+    - name: Install talk
+      yum: name=talk state=present
+   

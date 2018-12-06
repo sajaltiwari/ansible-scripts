@@ -1,0 +1,10 @@
+---
+- name: Create Username and directory
+  hosts: ansibleclient
+
+  tasks:
+    - name: Create a user
+      user: name=usertest shell=/usr/bash uid=6666 comment="my first user"
+   
+    - name: Create a Directory
+      group: name=grouptest gid=7777

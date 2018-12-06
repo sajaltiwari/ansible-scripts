@@ -1,0 +1,37 @@
+---
+- name: Create Username and directory
+  hosts: ansibleclient
+
+  tasks:
+    - name: Add key
+      apt_key:
+        id: 0EBFCD88
+        url: https://download.docker.com/linux/ubuntu/gpg 
+        state: present
+
+    - name:
+      apt_repository:
+        repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable
+        update_cache: yes
+    
+    - name: Install and Check if docker is present
+      apt: 
+        name: "{{item}}"
+        state: present
+ 
+      with_items:
+        - apt-transport-https
+        - ca-certificates
+        - curl
+        - software-properties-common
+        - docker-ce
+
+    - name: "Starting Docker services"
+      service: name=docker state=started enabled=yes
+ 
+    - name: Install hello-world
+      command: docker run hello-world
+      register: output
+
+    - name: Display Output
+      debug: var=output

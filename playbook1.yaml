@@ -1,0 +1,10 @@
+---
+- name: Create Username and directory
+  hosts: ansibleclient
+
+  tasks:
+    - name: Create a user
+      user: name=test uid=8888
+   
+    - name: Create a Directory
+      file: path=/var/tmp/test state=directory

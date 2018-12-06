@@ -1,0 +1,14 @@
+---
+- name: Start NTP
+  hosts: ansibleclient
+
+  tasks:
+    - name: NTP
+      apt: package=ntp state=present
+
+    - name: Service start
+      service: name=ntp state=started enabled=yes
+
+    - name: NTP
+      file: path=/etc/ntp.conf state=file
+

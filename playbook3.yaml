@@ -1,0 +1,13 @@
+---
+- name: Playbook for File and directories
+  hosts: ansibleclient
+
+  tasks:
+    - name: Create a directory 
+      file: path=/var/tmp/play3 owner=root state=directory
+
+    - name: Create file in the directory
+      file: path=/var/tmp/play3/play3-file owner=test state=touch
+   
+    - name: Copy log file
+      copy: src=/var/log/dpkg.log dest=/var/tmp/play3/play3-file

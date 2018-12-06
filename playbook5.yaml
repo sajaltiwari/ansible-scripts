@@ -1,0 +1,8 @@
+---
+- name: Start cron
+  hosts: ansibleclient
+
+  tasks:
+    - name: Cron
+      service: name=cron state=restarted enabled=yes
+   
